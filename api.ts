@@ -5,14 +5,14 @@
 //%weight=5
 namespace font2of5 {
 
-    let pin2of5: Buffer = pins.createBufferFromArray(
-        [0b11000, 0b10100, 0b10010, 0b10001, 0b01100, 0b01010, 0b00110, 0b00101, 0b00011]
-    );
+    let pin2of5: Buffer = hex`181412110C0A09060503`
+    //  [0b11000, 0b10100, 0b10010, 0b10001, 0b01100, 0b01010, 0b00110, 0b00101, 0b00011]
 
-    function makeb10arr(n: number) {
-        let na: uint8[] = [];
-        while (n) {
-            na.push(n % 10);
+    function makeb10buf(n: number, l: number) {
+        let na: Buffer = pins.createBuffer(l);
+        for (let i = 0; i < l; i++) {
+            if (!n) break;
+            na[i] = (n % 10);
             n = Math.idiv(n, 10);
         }
         return na;
@@ -43,26 +43,17 @@ namespace font2of5 {
     export function show2of5number(n: number, guard: boolean, horizontal?: boolean) {
         if (guard) n = n % 1000000;
         else n = n % 100000;
-        let nb10 = makeb10arr(n);
-        if (guard) while (nb10.length < 6) nb10.push(0);
-        else while (nb10.length < 5) nb10.push(0);
+        let nb10 = makeb10buf(n, guard ? 6 : 5);
         let gn: number = 0xA;
-        if (guard) gn = nb10.pop();
-        nb10.reverse();
+        if (guard) gn = nb10[6];
         let gnt = pin2of5[gn];
-        for (let x = 0; x < nb10.length; x++) {
-            let nt = pin2of5[nb10[x]], gntb = gnt & 1;
-            for (let y = 0; y < 5; y++) {
-                let ntb = nt & 1;
-                if (gn < 0xA) {
-                    if (gntb) drawit(!ntb, x, y, horizontal);
-                    else drawit(!!ntb, x, y, horizontal);
-                } else {
-                    drawit(!!ntb, x, y, horizontal);
-                }
-                nt = nt >>> 1;
-            }
-            gnt = gnt >>> 1;
+        for (let x = 0; x < 5; x++) {
+            let nt = nb10[nb10.length - x];
+            if (gn < 0xA)
+                show2of5in1d(nt, !!(gnt & 1), x, horizontal);
+            else
+                show2of5in1d(nt, false, x, horizontal);
+            gnt = gnt >> 1;
         }
     }
 
@@ -86,12 +77,11 @@ namespace font2of5 {
         let nt = pin2of5[n];
         for (let row = 0; row < 5; row++) {
             let ntb = nt & 1;
-            if (inv) {
-                drawit(!ntb, col, row, horizontal);
-            } else {
+            if (inv)
+                drawit(!!!ntb, col, row, horizontal);
+            else
                 drawit(!!ntb, col, row, horizontal);
-            }
-            nt = nt >>> 1;
+            nt = nt >> 1;
         }
     }
 
