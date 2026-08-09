@@ -5,7 +5,10 @@ README \| [TH-README](THREADME.md)
 A MakeCode extension for the **micro:bit** that displays numbers on the 5×5 LED matrix in **2 of 5** style.  
 Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 
-> **Demo:** [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)  
+> **Demo:**
+> [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)
+> [2of5 password](https://makecode.microbit.org/S85011-20530-96755-53791)
+> 
 > Project page: [https://quarequin.github.io/microbit-2of5-font/](https://quarequin.github.io/microbit-2of5-font/)
 
 ---
