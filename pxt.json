@@ -3,9 +3,7 @@
     "version": "4.2.0",
     "description": "2of5 barcodes inspired font.",
     "dependencies": {
-        "core": "*",
-        "radio": "*",
-        "microphone": "*"
+        "core": "*"
     },
     "files": [
         "main.blocks",

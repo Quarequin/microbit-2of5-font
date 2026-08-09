@@ -50,7 +50,7 @@ namespace font2of5 {
         if (guard) gn = nb10[6];
         let gnt = pin2of5[gn];
         for (let x = 0; x < 5; x++) {
-            nt = nb10[nb10.length - x];
+            nt = nb10[4 - x];
             if (gn < 0xA)
                 show2of5SingleNumber(nt, !!(gnt & 1) !== neg, x, transpos);
             else
