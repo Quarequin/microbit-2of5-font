@@ -1,6 +1,6 @@
 # microbit-2of5-font
 
-[README](README.md) | TH-README
+[README](README.md) \| TH-README
 
 ส่วนขยาย MakeCode สำหรับ **micro:bit** ที่แสดงตัวเลขบนหน้าจอ LED 5×5 ในรูปแบบ **2 of 5**  
 ได้รับแรงบันดาลใจจากตระกูลบาร์โค้ด 2 of 5 โดยเฉพาะ Interleaved 2 of 5 (ITF)
