@@ -6,7 +6,7 @@ A MakeCode extension for the **micro:bit** that displays numbers on the 5×5 LED
 Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 
 > **Demo:** [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)  
-> Project page: [https://phatisena.github.io/microbit-2of5-font/](https://phatisena.github.io/microbit-2of5-font/)
+> Project page: [https://quarequin.github.io/microbit-2of5-font/](https://quarequin.github.io/microbit-2of5-font/)
 
 ---
 
