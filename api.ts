@@ -70,7 +70,7 @@ namespace font2of5 {
         else n = n % 100000;
         let nb10: Buffer = makeb10buf(n, guard ? 6 : 5),
         gn = 0xA, nt = 0;
-        if (guard) gn = nb10[6];
+        if (guard) gn = nb10[5];
         let gnt = pin2of5[gn];
         for (let x = 0; x < 5; x++) {
             nt = nb10[4 - x];
