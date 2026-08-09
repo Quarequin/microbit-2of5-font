@@ -6,7 +6,7 @@
 namespace font2of5 {
 
     const pin2of5: Buffer = hex`181412110C0A09060503`
-    // *reverse* [0b11000, 0b10100, 0b10010, 0b10001, 0b01100, 0b01010, 0b01001, 0b00110, 0b00101, 0b00011]
+    //  [0b11000, 0b10100, 0b10010, 0b10001, 0b01100, 0b01010, 0b01001, 0b00110, 0b00101, 0b00011]
 
     const find2of5number = (t: number) => {
         const cmp: (a: number, b: number) => number = (a, b) => b - a;
