@@ -6,7 +6,20 @@
 namespace font2of5 {
 
     const pin2of5: Buffer = hex`181412110C0A09060503`
-    //  [0b11000, 0b10100, 0b10010, 0b10001, 0b01100, 0b01010, 0b01001, 0b00110, 0b00101, 0b00011]
+    // *reverse* [0b11000, 0b10100, 0b10010, 0b10001, 0b01100, 0b01010, 0b01001, 0b00110, 0b00101, 0b00011]
+
+    const find2of5number = (t: number) => {
+        const cmp: (a: number, b: number) => number = (a, b) => b - a;
+        let l = 0, r = pin2of5.length - 1;
+        while (l <= r) {
+            const m = l + ((r - l) >>> 1);
+            const compare = cmp(pin2of5[m], t)
+            if (compare > 0) r = m - 1;
+            else if (compare < 0) l = m + 1;
+            else return m;
+        }
+        return -1;
+    }
 
     const makeb10buf = (n: number, l: number): Buffer => {
         let na: Buffer = pins.createBuffer(l);
@@ -46,8 +59,8 @@ namespace font2of5 {
         if (a === b) return -1;
         //if ((a < 0 || a > 4)
         //|| (b < 0 || b > 4)) return -1;
-        let nb = pins.createBufferFromArray([(1 << a) + (1 << b)]);
-        return pin2of5.indexOf(nb);
+        let nb = (1 << a) + (1 << b);
+        return find2of5number(nb);
     }
 
     /**
