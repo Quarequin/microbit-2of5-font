@@ -1,6 +1,7 @@
 # microbit-2of5-font
 
-README | [TH-README](THREADME.md)
+README \| [TH-README](THREADME.md)
+
 A MakeCode extension for the **micro:bit** that displays numbers on the 5×5 LED matrix in **2 of 5** style.  
 Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 
