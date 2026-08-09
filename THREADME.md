@@ -6,7 +6,7 @@
 ได้รับแรงบันดาลใจจากตระกูลบาร์โค้ด 2 of 5 โดยเฉพาะ Interleaved 2 of 5 (ITF)
 
 > **เดโม:** [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)  
-> หน้าโปรเจกต์: [https://phatisena.github.io/microbit-2of5-font/](https://phatisena.github.io/microbit-2of5-font/)
+> หน้าโปรเจกต์: [https://quarequin.github.io/microbit-2of5-font/](https://quarequin.github.io/microbit-2of5-font/)
 
 ---
 
