@@ -41,6 +41,7 @@ namespace font2of5 {
     //%group="show screen"
     //%weight=8
     export function show2of5Number(n: number, guard: boolean, transpos?: boolean) {
+        n = n | 0;
         let neg = (n < 0);
         if (neg) n = -n;
         if (guard) n = n % 1000000;
@@ -73,6 +74,7 @@ namespace font2of5 {
     //%group="show screen"
     //%weight=4
     export function show2of5SingleNumber(n: number, inv: boolean, col: number, transpos?: boolean) {
+        n = n | 0;
         n = n % 10;
         col = Math.min(col, 4);
         col = Math.max(col, 0);
@@ -112,6 +114,7 @@ namespace font2of5 {
     //%weight=2
     export function show2of5DualNumber(num1: number, num2: number, align: alignment, transpos?: boolean) {
         align = Math.clamp(-1, 1, align);
+        num1 = num1 | 0; num2 = num2 | 0;
         let neg1 = (num1 < 0); if (neg1) num1 = -num1;
         let neg2 = (num2 < 0); if (neg2) num2 = -num2;
         let numl1: Buffer = pins.createBuffer(3); numl1[1] = Math.idiv(num1, 10) % 10, numl1[2] = num1 % 10;
