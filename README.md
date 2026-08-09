@@ -1,4 +1,6 @@
 
+> [demo: 2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)
+
 > Open this page at [https://phatisena.github.io/microbit-2of5-font/](https://phatisena.github.io/microbit-2of5-font/)
 
 ## Use as Extension
