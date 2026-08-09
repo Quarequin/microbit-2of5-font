@@ -1,6 +1,6 @@
 {
     "name": "microbit 2of5 font",
-    "version": "4.2.0",
+    "version": "4.2.1",
     "description": "2of5 barcodes inspired font.",
     "dependencies": {
         "core": "*"
