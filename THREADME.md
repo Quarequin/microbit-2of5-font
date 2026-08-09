@@ -5,7 +5,10 @@
 ส่วนขยาย MakeCode สำหรับ **micro:bit** ที่แสดงตัวเลขบนหน้าจอ LED 5×5 ในรูปแบบ **2 of 5**  
 ได้รับแรงบันดาลใจจากตระกูลบาร์โค้ด 2 of 5 โดยเฉพาะ Interleaved 2 of 5 (ITF)
 
-> **เดโม:** [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)  
+> **เดโม:**
+> - [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)
+> - [2of5 password](https://makecode.microbit.org/S85011-20530-96755-53791)
+> 
 > หน้าโปรเจกต์: [https://quarequin.github.io/microbit-2of5-font/](https://quarequin.github.io/microbit-2of5-font/)
 
 ---
