@@ -17,6 +17,7 @@ Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 - Optional **Guard** mode (uses the 6th digit as invert reference)
 - Optional **Transpose** mode (swap vertical ↔ horizontal)
 - Single-digit display or dual-number display with alignment
+- `write2of5` helper to map two bit positions back to a digit
 - Compact implementation using `Buffer` for the 2 of 5 patterns
 
 ---
@@ -40,16 +41,18 @@ https://github.com/Quarequin/microbit-2of5-font
 
 | Function | Description |
 |----------|-------------|
-| `show2of5Number(n, guard, transpos?)` | Show a full number (up to 5 or 6 digits) |
-| `show2of5SingleNumber(n, inv, col, transpos?)` | Show a single digit at a specific column |
-| `show2of5DualNumber(num1, num2, align, transpos?)` | Show two numbers side-by-side (Left / Center / Right) |
+| `write2of5(a, b)` | Map two bit positions (0–4) to a 2of5 digit (returns -1 if invalid) |
+| `show2of5Number(n, guard, transpose?)` | Show a full number (up to 5 or 6 digits) |
+| `show2of5SingleNumber(n, inv, col, transpose?)` | Show a single digit at a specific column |
+| `show2of5DualNumber(a, b, align, transpose?)` | Show two numbers side-by-side (Left / Center / Right) |
 
 ### Important Parameters
 
 - **guard** — when `true`, the 6th digit controls invert of each digit
-- **transpos** — rotate the display (vertical ↔ horizontal)
+- **transpose** — rotate the display (vertical ↔ horizontal)
 - **inv** — invert the dots of that digit (also used for negative numbers)
 - **align** — `Left` / `Center` / `Right` for dual mode
+- **a, b** (in `write2of5`) — bit positions (0–4). Must be different.
 
 ---
 
