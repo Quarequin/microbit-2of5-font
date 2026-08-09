@@ -5,17 +5,17 @@
 //%weight=5
 namespace font2of5 {
 
-    const pin2of5: Buffer = hex`181412110C0A09060503`
+    const pin2of5: Buffer = hex`181412110C0A09060503`;
     //  [0b11000, 0b10100, 0b10010, 0b10001, 0b01100, 0b01010, 0b01001, 0b00110, 0b00101, 0b00011]
 
+    const find2of5_cmp: (a: number, b: number) => number = (a, b) => b - a;
     function find2of5number (t: number): number {
-        const cmp: (a: number, b: number) => number = (a, b) => b - a;
-        let l = 0, r = pin2of5.length - 1;
+        let l = 0, r = 9;
         while (l <= r) {
             const m = l + ((r - l) >>> 1);
-            const compare = cmp(pin2of5[m], t)
-            if (compare > 0) r = m - 1;
-            else if (compare < 0) l = m + 1;
+            const icmp = find2of5_cmp(pin2of5[m], t);
+            if (icmp > 0) r = m - 1;
+            else if (icmp < 0) l = m + 1;
             else return m;
         }
         return -1;
@@ -77,7 +77,7 @@ namespace font2of5 {
     //%weight=8
     export function show2of5Number(n: number, guard: boolean, transpose?: boolean) {
         n = n | 0;
-        let neg = (n < 0);
+        const neg = (n < 0);
         if (neg) n = -n;
         if (guard) n = n % 1000000;
         else n = n % 100000;
@@ -144,36 +144,36 @@ namespace font2of5 {
     //%block="show ( $a and $b ) at $align|| with transpose $transpose"
     //%a.min=0 a.max=99 a.defl=26
     //%b.min=0 b.max=99 b.defl=48
-    //%align.min=-1 align.max=1 align.defl=0
+    // %align.min=-1 align.max=1 align.defl=0
     //%group="show screen"
     //%weight=2
     export function show2of5DualNumber(a: number, b: number, align: alignment, transpose?: boolean) {
         align = Math.clamp(-1, 1, align);
         a = a | 0; b = b | 0;
-        let neg1 = (a < 0); if (neg1) a = -a;
-        let neg2 = (b < 0); if (neg2) b = -b;
+        const ang = (a < 0); if (ang) a = -a;
+        const bng = (b < 0); if (bng) b = -b;
         let numl1: Buffer = pins.createBuffer(3); numl1[1] = Math.idiv(a, 10) % 10, numl1[2] = a % 10;
         let numl2: Buffer = pins.createBuffer(3); numl2[1] = Math.idiv(b, 10) % 10, numl2[2] = b % 10;
         switch (align) {
             case -1:
                 numl1[0] = (Math.idiv(a, 100) % 10);
-                show2of5SingleNumber(numl1[0], neg1, 0, transpose);
-                show2of5SingleNumber(numl1[1], neg1, 1, transpose);
-                show2of5SingleNumber(numl1[2], neg1, 2, transpose);
-                show2of5SingleNumber(numl2[2], neg2, 4, transpose);
+                show2of5SingleNumber(numl1[0], ang, 0, transpose);
+                show2of5SingleNumber(numl1[1], ang, 1, transpose);
+                show2of5SingleNumber(numl1[2], ang, 2, transpose);
+                show2of5SingleNumber(numl2[2], bng, 4, transpose);
             return;
             case 0: default:
-                show2of5SingleNumber(numl1[1], neg1, 0, transpose);
-                show2of5SingleNumber(numl1[2], neg1, 1, transpose);
-                show2of5SingleNumber(numl2[1], neg2, 3, transpose);
-                show2of5SingleNumber(numl2[2], neg2, 4, transpose);
+                show2of5SingleNumber(numl1[1], ang, 0, transpose);
+                show2of5SingleNumber(numl1[2], ang, 1, transpose);
+                show2of5SingleNumber(numl2[1], bng, 3, transpose);
+                show2of5SingleNumber(numl2[2], bng, 4, transpose);
             return;
             case 1:
                 numl2[0] = (Math.idiv(b, 100) % 10);
-                show2of5SingleNumber(numl1[2], neg1, 0, transpose);
-                show2of5SingleNumber(numl2[0], neg2, 2, transpose);
-                show2of5SingleNumber(numl2[1], neg2, 3, transpose);
-                show2of5SingleNumber(numl2[2], neg2, 4, transpose);
+                show2of5SingleNumber(numl1[2], ang, 0, transpose);
+                show2of5SingleNumber(numl2[0], bng, 2, transpose);
+                show2of5SingleNumber(numl2[1], bng, 3, transpose);
+                show2of5SingleNumber(numl2[2], bng, 4, transpose);
             return;
         }
     }
