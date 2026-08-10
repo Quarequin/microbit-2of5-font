@@ -31,14 +31,12 @@ namespace font2of5 {
 
     function drawhere(cond: boolean, x: number, y: number, transpose: boolean, brigth: number) {
         if (cond) {
-            brigth = (brigth & 0xff) || -1;
+            brigth = brigth & 0xff;
             if (transpose) {
-                if (brigth < 0) led.plot(y, x);
-                else led.plotBrightness(y, x, brigth);
+                led.plotBrightness(y, x, brigth);
                 return;
             }
-            if (brigth < 0)led.plot(x, y);
-            else led.plotBrightness(x, y, brigth);
+            led.plotBrightness(x, y, brigth);
             return;
         }
         if (transpose) {
@@ -79,7 +77,7 @@ namespace font2of5 {
     //%blockid=font2of5_print2of5number
     //%block="show 2of5 number $n with guard? $guard|| transpose $transpose and brigthness $brigth"
     //%n.defl=84210
-    //%brigth.min=0 brigth.max=255 //brigth.defl=128
+    //%brigth.min=0 brigth.max=255 brigth.defl=255
     //%group="show screen"
     //%weight=8
     export function show2of5Number(n: number, guard: boolean, transpose?: boolean, brigth?: number) {
@@ -111,7 +109,7 @@ namespace font2of5 {
     //%blockid=font2of5_showin1digit
     //%block="show 2of5 in 1digit $n at $col inverse $inv|| transpose $transpose brigthness $brigth"
     //%n.min=0 n.max=9 n.defl=8
-    //%brigth.min=0 brigth.max=255 //brigth.defl=128
+    //%brigth.min=0 brigth.max=255 brigth.defl=255
     //%col.min=0 col.max=4 col.defl=2
     //%group="show screen"
     //%weight=4
@@ -154,7 +152,7 @@ namespace font2of5 {
     //%block="show ( $a and $b ) at $align|| transpose $transpose brigthness $brigth"
     //%a.min=0 a.max=99 a.defl=26
     //%b.min=0 b.max=99 b.defl=48
-    //%brigth.min=0 brigth.max=255 //brigth.defl=128
+    //%brigth.min=0 brigth.max=255 brigth.defl=255
     // %align.min=-1 align.max=1 align.defl=0
     //%group="show screen"
     //%weight=2
