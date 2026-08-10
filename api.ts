@@ -20,8 +20,9 @@ namespace font2of5 {
         return -1;
     }
 
-    let nb10: Buffer = pins.createBuffer(6)
+    let nb10: Buffer = null;
     function makeb10buf (n: number) {
+        if (!nb10) nb10 = pins.createBuffer(6);
         for (let i = 0; i < 6; i++) {
             if (!n) break;
             nb10[i] = (n % 10);
@@ -136,9 +137,9 @@ namespace font2of5 {
         right = 1,
     }
 
-    let numbufinfo: Buffer = pins.createBuffer(12);
-    let numl1: Buffer = pins.createBuffer(3);
-    let numl2: Buffer = pins.createBuffer(3);
+    let numbufinfo: Buffer = null;
+    let numl1: Buffer = null;
+    let numl2: Buffer = null;
 
     /**
      * render two number values in 2of5 code to current screen
@@ -161,8 +162,11 @@ namespace font2of5 {
         a = a | 0; b = b | 0;
         const ang = (a < 0); if (ang) a = -a;
         const bng = (b < 0); if (bng) b = -b;
+        if (!numl1) numl1 = pins.createBuffer(3);
         numl1[1] = Math.idiv(a, 10) % 10, numl1[2] = a % 10;
+        if (!numl2) numl2 = pins.createBuffer(3);
         numl2[1] = Math.idiv(b, 10) % 10, numl2[2] = b % 10;
+        if (!numbufinfo) numbufinfo = pins.createBuffer(12);
         switch (align) {
             case -1:
                 numl1[0] = (Math.idiv(a, 100) % 10);
