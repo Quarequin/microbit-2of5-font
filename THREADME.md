@@ -47,7 +47,7 @@ https://github.com/Quarequin/microbit-2of5-font
 |---------|----------|
 | `write2of5(a, b)` | แปลงตำแหน่งบิต 2 ตำแหน่ง (0–4) เป็นตัวเลข 2of5 (คืนค่า -1 ถ้าไม่ถูกต้อง) |
 | `show2of5Number(n, guard, transpose?, brightness?)` | แสดงตัวเลขเต็ม (สูงสุด 5 หรือ 6 หลัก) |
-| `show2of5SingleNumber(n, inv, col, transpose?, brightness?)` | แสดงตัวเลข 1 หลักที่ตำแหน่งคอลัมน์ที่กำหนด |
+| `show2of5SingleNumber(n, col, inv, transpose?, brightness?)` | แสดงตัวเลข 1 หลักที่ตำแหน่งคอลัมน์ที่กำหนด |
 | `show2of5DualNumber(a, b, align, transpose?, brightness?)` | แสดงตัวเลข 2 ค่าพร้อมกัน (ซ้าย / กลาง / ขวา) |
 
 ### พารามิเตอร์สำคัญ
