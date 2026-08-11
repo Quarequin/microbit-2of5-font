@@ -7,8 +7,8 @@ Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 
 > **Demo:**
 > - [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)
-> - [2of5 password](https://makecode.microbit.org/S85011-20530-96755-53791)
-> 
+> - [2of5 password](https://makecode.microbit.org/S85011-20530-96755-53791) *(demo of `write2of5`)*
+>
 > Project page: [https://quarequin.github.io/microbit-2of5-font/](https://quarequin.github.io/microbit-2of5-font/)
 
 ---
@@ -19,9 +19,10 @@ Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 - Support for **negative numbers** (shown via inverted dots)
 - Optional **Guard** mode (uses the 6th digit as invert reference)
 - Optional **Transpose** mode (swap vertical ↔ horizontal)
+- Optional **Brightness** control (0–255)
 - Single-digit display or dual-number display with alignment
-- `write2of5` helper to map two bit positions back to a digit
-- Compact implementation using `Buffer` for the 2 of 5 patterns
+- `write2of5` helper — maps two bit positions back to a digit (uses binary search)
+- Very compact implementation using a single `Buffer` for all 2 of 5 patterns
 
 ---
 
@@ -45,14 +46,15 @@ https://github.com/Quarequin/microbit-2of5-font
 | Function | Description |
 |----------|-------------|
 | `write2of5(a, b)` | Map two bit positions (0–4) to a 2of5 digit (returns -1 if invalid) |
-| `show2of5Number(n, guard, transpose?)` | Show a full number (up to 5 or 6 digits) |
-| `show2of5SingleNumber(n, inv, col, transpose?)` | Show a single digit at a specific column |
-| `show2of5DualNumber(a, b, align, transpose?)` | Show two numbers side-by-side (Left / Center / Right) |
+| `show2of5Number(n, guard, transpose?, brightness?)` | Show a full number (up to 5 or 6 digits) |
+| `show2of5SingleNumber(n, inv, col, transpose?, brightness?)` | Show a single digit at a specific column |
+| `show2of5DualNumber(a, b, align, transpose?, brightness?)` | Show two numbers side-by-side (Left / Center / Right) |
 
 ### Important Parameters
 
 - **guard** — when `true`, the 6th digit controls invert of each digit
 - **transpose** — rotate the display (vertical ↔ horizontal)
+- **brightness** — LED brightness level (0–255, default 255)
 - **inv** — invert the dots of that digit (also used for negative numbers)
 - **align** — `Left` / `Center` / `Right` for dual mode
 - **a, b** (in `write2of5`) — bit positions (0–4). Must be different.
@@ -76,11 +78,13 @@ Each digit is encoded with 5 bits (exactly two bits set to 1):
 9 → 00011
 ```
 
-Stored as a compact Buffer:
+Stored as a compact descending Buffer (the “2of5 magic buffer”):
 
 ```typescript
 const pin2of5: Buffer = hex`181412110C0A09060503`
 ```
+
+`write2of5` uses binary search on this buffer to convert two bit positions back into a digit.
 
 ---
 
@@ -100,7 +104,7 @@ https://github.com/Quarequin/microbit-2of5-font
 
 - Target: **micro:bit** (MakeCode / PXT)
 - Language: TypeScript
-- Current version: see `pxt.json`
+- Current version: **6.1.0** (see `pxt.json`)
 
 ---
 
