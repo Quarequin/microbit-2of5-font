@@ -30,8 +30,17 @@ namespace font2of5 {
         }
     }
 
-    function drawhere(cond: boolean, x: number, y: number, transpose: boolean, brigth: number) {
-        if (cond) {
+    function pointhere(x: number, y: number, transpose: boolean) {
+        if (transpose) {
+            if (led.pointBrightness(y, x) > 0) return true;
+            return false;
+        }
+        if (led.pointBrightness(x, y) > 0) return true;
+        return false;
+    }
+
+    function drawhere(place: boolean, x: number, y: number, transpose: boolean, brigth: number) {
+        if (place) {
             brigth = brigth & 0xff;
             if (transpose) {
                 led.plotBrightness(y, x, brigth);
@@ -45,6 +54,25 @@ namespace font2of5 {
             return;
         }
         led.unplot(x, y);
+    }
+
+    let frtn: uint8 = 0, frtc: uint8 = 0;
+    function findRendered(i: number, transpose: boolean, inv: boolean) {
+        frtn = 0xFF, frtc = 0;
+        for (let j = 0; j < 4; j++) {
+            if (
+                pointhere(i, j, transpose) ||
+                inv && !pointhere(i, j, transpose)
+            ) {
+                frtn = frtn + j;
+                frtc++;
+                if (frtc > 1) break;
+                else if (frtc > 0) frtn = frtn << 4;
+                else break;
+            }
+        }
+        if (frtc < 1) return -1;
+        return write(frtn & 0xF, frtn >>> 4);
     }
 
     /**
@@ -118,6 +146,7 @@ namespace font2of5 {
         n = n | 0;
         n = n % 10;
         col = Math.clamp(0, 4, col);
+        if (n === findRendered(col, transpose, inv)) return;
         for (let row = 0, nt = pin2of5[n], ntb = 0;  row < 5; row++, nt = nt >>> 1) {
             ntb = nt & 1;
             if (inv) {
