@@ -32,10 +32,10 @@ namespace font2of5 {
 
     function pointhere(x: number, y: number, transpose: boolean) {
         if (transpose) {
-            if (led.pointBrightness(y, x) > 0) return true;
+            if (led.pointBrightness(y, x) > 0 || led.point(y, x)) return true;
             return false;
         }
-        if (led.pointBrightness(x, y) > 0) return true;
+        if (led.pointBrightness(x, y) > 0 || led.point(x, y)) return true;
         return false;
     }
 
@@ -56,23 +56,17 @@ namespace font2of5 {
         led.unplot(x, y);
     }
 
-    let frtn: uint8 = 0, frtc: uint8 = 0;
+    let frtn: uint8 = 0;
     function findRendered(i: number, transpose: boolean, inv: boolean) {
-        frtn = 0xFF, frtc = 0;
+        frtn = 0;
         for (let j = 0; j < 4; j++) {
             if (
                 pointhere(i, j, transpose) ||
-                inv && !pointhere(i, j, transpose)
-            ) {
-                frtn = frtn + j;
-                frtc++;
-                if (frtc > 1) break;
-                else if (frtc > 0) frtn = frtn << 4;
-                else break;
-            }
+                (inv && !pointhere(i, j, transpose))
+            ) frtn = frtn | 1;
+            frtn = frtn << 1;
         }
-        if (frtc < 1) return -1;
-        return write(frtn & 0xF, frtn >>> 4);
+        return find2of5number(frtn);
     }
 
     /**
