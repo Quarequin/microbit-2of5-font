@@ -2,6 +2,9 @@
 
 [README](README.md) \| TH-README
 
+![Current version](https://img.shields.io/github/commits-since/Quarequin/microbit-2of5-font/latest?style=flat-square&labelColor=%230000&color=%230000
+) 
+
 ส่วนขยาย MakeCode สำหรับ **micro:bit** ที่แสดงตัวเลขบนหน้าจอ LED 5×5 ในรูปแบบ **2 of 5**  
 ได้รับแรงบันดาลใจจากตระกูลบาร์โค้ด 2 of 5 โดยเฉพาะ Interleaved 2 of 5 (ITF)
 
@@ -97,14 +100,6 @@ const pin2of5: Buffer = hex`181412110C0A09060503`
 ```
 https://github.com/Quarequin/microbit-2of5-font
 ```
-
----
-
-## ข้อมูลทางเทคนิค
-
-- เป้าหมาย: **micro:bit** (MakeCode / PXT)
-- ภาษา: TypeScript
-- เวอร์ชันปัจจุบัน: **6.1.0** (ดูจากไฟล์ `pxt.json`)
 
 ---
 
