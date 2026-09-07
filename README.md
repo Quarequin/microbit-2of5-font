@@ -2,6 +2,9 @@
 
 README \| [TH-README](THREADME.md)
 
+![Current version](https://img.shields.io/github/commits-since/Quarequin/microbit-2of5-font/latest?style=flat-square&labelColor=%230000&color=%230000
+) 
+
 A MakeCode extension for the **micro:bit** that displays numbers on the 5×5 LED matrix in **2 of 5** style.  
 Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 
@@ -97,15 +100,6 @@ const pin2of5: Buffer = hex`181412110C0A09060503`
 ```
 https://github.com/Quarequin/microbit-2of5-font
 ```
-
----
-
-## Technical Info
-
-- Target: **micro:bit** (MakeCode / PXT)
-- Language: TypeScript
-- ![Current version](https://img.shields.io/github/commits-since/Quarequin/microbit-2of5-font/latest?style=flat-square&labelColor=%230000&color=%230000
-) (see `pxt.json`)
 
 ---
 
