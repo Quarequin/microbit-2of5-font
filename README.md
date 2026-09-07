@@ -104,7 +104,8 @@ https://github.com/Quarequin/microbit-2of5-font
 
 - Target: **micro:bit** (MakeCode / PXT)
 - Language: TypeScript
-- Current version: **6.1.0** (see `pxt.json`)
+- ![Current version](https://img.shields.io/github/commits-since/Quarequin/microbit-2of5-font/latest?style=flat-square&labelColor=%230000&color=%230000
+) (see `pxt.json`)
 
 ---
 
