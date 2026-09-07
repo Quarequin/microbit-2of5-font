@@ -1,7 +1,7 @@
 // tests go here; this will not be compiled when this package is used as an extension.
 
-//basic.forever(() => {
-let ntest = randint(-999999, 999999);
+basic.forever(() => {
+let ntest = Math.idiv(input.runningTime(), 100)// randint(-999999, 999999);
 console.log(ntest);
 font2of5.showNumber(ntest, true);
-//})
+})

@@ -59,12 +59,12 @@ namespace font2of5 {
     let frtn: uint8 = 0;
     function findRendered(i: number, transpose: boolean, inv: boolean) {
         frtn = 0;
-        for (let j = 0; j < 4; j++) {
+        for (let j = 4; j >= 0; j--) {
+            frtn = frtn << 1;
             if (
                 pointhere(i, j, transpose) ||
                 (inv && !pointhere(i, j, transpose))
             ) frtn = frtn | 1;
-            frtn = frtn << 1;
         }
         return find2of5number(frtn);
     }
