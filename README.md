@@ -7,7 +7,7 @@ Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 
 > **Demo:**
 > - [2of5 stopwatch](https://makecode.microbit.org/S01096-15267-22200-79592)
-> - [2of5 password](https://makecode.microbit.org/S85011-20530-96755-53791) *(demo of `write2of5`)*
+> - [2of5 password](https://makecode.microbit.org/S85011-20530-96755-53791) *(demo of `write`)*
 >
 > Project page: [https://quarequin.github.io/microbit-2of5-font/](https://quarequin.github.io/microbit-2of5-font/)
 
@@ -21,7 +21,7 @@ Inspired by the 2 of 5 barcode family, especially Interleaved 2 of 5 (ITF).
 - Optional **Transpose** mode (swap vertical ↔ horizontal)
 - Optional **Brightness** control (0–255)
 - Single-digit display or dual-number display with alignment
-- `write2of5` helper — maps two bit positions back to a digit (uses binary search)
+- `write` helper — maps two bit positions back to a digit (uses binary search)
 - Very compact implementation using a single `Buffer` for all 2 of 5 patterns
 
 ---
@@ -45,10 +45,10 @@ https://github.com/Quarequin/microbit-2of5-font
 
 | Function | Description |
 |----------|-------------|
-| `write2of5(a, b)` | Map two bit positions (0–4) to a 2of5 digit (returns -1 if invalid) |
-| `show2of5Number(n, guard, transpose?, brightness?)` | Show a full number (up to 5 or 6 digits) |
-| `show2of5SingleNumber(n, col, inv, transpose?, brightness?)` | Show a single digit at a specific column |
-| `show2of5DualNumber(a, b, align, transpose?, brightness?)` | Show two numbers side-by-side (Left / Center / Right) |
+| `write(a, b)` | Map two bit positions (0–4) to a 2of5 digit (returns -1 if invalid) |
+| `showNumber(n, guard, transpose?, brightness?)` | Show a full number (up to 5 or 6 digits) |
+| `showSingleNumber(n, col, inv, transpose?, brightness?)` | Show a single digit at a specific column |
+| `showDualNumber(a, b, align, transpose?, brightness?)` | Show two numbers side-by-side (Left / Center / Right) |
 
 ### Important Parameters
 
@@ -57,7 +57,7 @@ https://github.com/Quarequin/microbit-2of5-font
 - **brightness** — LED brightness level (0–255, default 255)
 - **inv** — invert the dots of that digit (also used for negative numbers)
 - **align** — `Left` / `Center` / `Right` for dual mode
-- **a, b** (in `write2of5`) — bit positions (0–4). Must be different.
+- **a, b** (in `write`) — bit positions (0–4). Must be different.
 
 ---
 
@@ -84,7 +84,7 @@ Stored as a compact descending Buffer (the “2of5 magic buffer”):
 const pin2of5: Buffer = hex`181412110C0A09060503`
 ```
 
-`write2of5` uses binary search on this buffer to convert two bit positions back into a digit.
+`write` uses binary search on this buffer to convert two bit positions back into a digit.
 
 ---
 
