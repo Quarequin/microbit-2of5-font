@@ -59,7 +59,7 @@ namespace font2of5 {
     //%b.min=0 b.max=4 b.defl=3
     //%group="write code"
     //%weight=1
-    export function write2of5(a: number, b: number) {
+    export function write(a: number, b: number) {
         a = Math.clamp(0, 4, a);
         b = Math.clamp(0, 4, b);
         if (a === b) return -1;
@@ -81,7 +81,7 @@ namespace font2of5 {
     //%brigth.min=0 brigth.max=255 brigth.defl=255
     //%group="show screen"
     //%weight=8
-    export function show2of5Number(n: number, guard: boolean, transpose?: boolean, brigth?: number) {
+    export function showNumber(n: number, guard: boolean, transpose?: boolean, brigth?: number) {
         n = n | 0;
         const neg = (n < 0);
         if (neg) n = -n;
@@ -92,10 +92,10 @@ namespace font2of5 {
         for (let x = 0, gnt = pin2of5[gn], nt = 0; x < 5; x++, gnt = gnt >>> 1) {
             nt = nb10[4 - x];
             if (gn < 0xA) {
-                show2of5SingleNumber(nt, x, !!(gnt & 1) !== neg, transpose, brigth);
+                showSingleNumber(nt, x, !!(gnt & 1) !== neg, transpose, brigth);
                 continue;
             }
-            show2of5SingleNumber(nt, x, neg, transpose, brigth);
+            showSingleNumber(nt, x, neg, transpose, brigth);
         }
     }
 
@@ -114,7 +114,7 @@ namespace font2of5 {
     //%col.min=0 col.max=4 col.defl=2
     //%group="show screen"
     //%weight=4
-    export function show2of5SingleNumber(n: number, col: number, inv: boolean, transpose?: boolean, brigth?: number) {
+    export function showSingleNumber(n: number, col: number, inv: boolean, transpose?: boolean, brigth?: number) {
         n = n | 0;
         n = n % 10;
         col = Math.clamp(0, 4, col);
@@ -157,7 +157,7 @@ namespace font2of5 {
     // %align.min=-1 align.max=1 align.defl=0
     //%group="show screen"
     //%weight=2
-    export function show2of5DualNumber(a: number, b: number, align: alignment, transpose?: boolean, brigth?: number) {
+    export function showDualNumber(a: number, b: number, align: alignment, transpose?: boolean, brigth?: number) {
         align = Math.clamp(-1, 1, align);
         a = a | 0; b = b | 0;
         const ang = (a < 0); if (ang) a = -a;
@@ -180,6 +180,6 @@ namespace font2of5 {
                 numbufinfo[0x0] = numl1[2], numbufinfo[0x4] = +(ang), numbufinfo[0x8] = 0; numbufinfo[0x1] = numl2[0], numbufinfo[0x5] = +(bng), numbufinfo[0x9] = 2; numbufinfo[0x2] = numl2[1], numbufinfo[0x6] = +(bng), numbufinfo[0xa] = 3; numbufinfo[0x3] = numl2[2], numbufinfo[0x7] = +(bng), numbufinfo[0xb] = 4;
             break;
         }
-        for (let i = 0; i < 4; i++) show2of5SingleNumber(numbufinfo[i], numbufinfo[i + 8], !!numbufinfo[i + 4], transpose, brigth);
+        for (let i = 0; i < 4; i++) showSingleNumber(numbufinfo[i], numbufinfo[i + 8], !!numbufinfo[i + 4], transpose, brigth);
     }
 }
